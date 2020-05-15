@@ -1,0 +1,31 @@
+import org.gradle.api.publish.maven.MavenPublication
+
+plugins {
+    id 'java'
+    id 'maven-publish'
+    id 'org.javamodularity.moduleplugin' version '1.6.0'
+    id 'java-library'
+}
+
+group 'powerdancer.databean'
+version '1.0'
+
+modularity.mixedJavaRelease 8
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    api "powerdancer.asmproxy:asm-proxy:3.0"
+    implementation "org.slf4j:slf4j-api:1.7.30"
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+        }
+    }
+}

@@ -1,0 +1,33 @@
+import org.gradle.api.publish.maven.MavenPublication
+
+plugins {
+    id 'java'
+    id 'maven-publish'
+    id 'org.javamodularity.moduleplugin' version '1.6.0'
+    id 'java-library'
+}
+
+group 'powerdancer.databean'
+version '1.0'
+
+//modularity.mixedJavaRelease 8
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+//    api project(":databean-core")
+    api "powerdancer.databean:databean-core:1.0"
+    implementation "org.slf4j:slf4j-api:1.7.30"
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.11.0'
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+        }
+    }
+}
