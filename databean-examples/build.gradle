@@ -10,14 +10,15 @@ version 'X'
 repositories {
     mavenLocal()
     mavenCentral()
+    maven {url 'https://xushichangdesmond.github.io/mavenRepo'}
 }
 
 dependencies {
     implementation "powerdancer.databean:databean-core:1.0"
 
     // only needed for the jackson examples
-//    implementation "powerdancer.databean:databean-jackson:1.0"
-    implementation(project(":databean-jackson"))
+    implementation "powerdancer.databean:databean-jackson:1.0"
+//    implementation(project(":databean-jackson"))
 
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.11.0'
 
