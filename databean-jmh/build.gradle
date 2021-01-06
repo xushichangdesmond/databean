@@ -1,0 +1,35 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "me.champeau.gradle:jmh-gradle-plugin:0.5.0"
+    }
+}
+
+plugins {
+    id 'java'
+}
+
+apply plugin: "me.champeau.gradle.jmh"
+
+version 'X'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    jmh project(":databean-core")
+//    jmhImplementation project("powerdancer.asmproxy:asm-proxy:3.0")
+}
+
+jmh {
+    fork = 1
+    warmup="1s"
+    timeOnIteration ="1s"
+}

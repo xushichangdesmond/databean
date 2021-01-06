@@ -2,4 +2,5 @@ rootProject.name = 'databean'
 include 'databean-core'
 include 'databean-examples'
 include 'databean-jackson'
+include 'databean-jmh'
 
