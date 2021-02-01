@@ -18,18 +18,25 @@ public class GetAndSetBenchmark {
         public MyBean asmProxy;
         public MyBean javaProxy;
         public MyBean pojo;
+        public MyBean arrayBacked;
 
         @Setup(Level.Trial)
         public void doSetup() {
             asmProxy = registry.get(MyBean.class).apply();
             javaProxy = MyBeanJavaProxy.newProxy();
             pojo = new MyBeanImpl();
+            arrayBacked = new MyBeanArrayBackedImpl();
         }
     }
 
     @Benchmark
     public void databeanProxy(Blackhole bh, MyState s) {
         bh.consume(s.asmProxy.a(1).a());
+    }
+
+    @Benchmark
+    public void arrayBackedPojo(Blackhole bh, MyState s) {
+        bh.consume(s.arrayBacked.a(1).a());
     }
 
     @Benchmark
